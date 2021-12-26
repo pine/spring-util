@@ -80,6 +80,17 @@ public abstract class MoreCollections {
         // Map
 
         @Override
+        public void clear() {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public List<V> compute(K key, BiFunction<? super K, ? super List<V>, ? extends List<V>> remappingFunction) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        @SuppressWarnings("SuspiciousMethodCalls")
         public List<V> getOrDefault(Object key, List<V> defaultValue) {
             return map.getOrDefault(key, defaultValue);
         }
@@ -125,11 +136,6 @@ public abstract class MoreCollections {
         }
 
         @Override
-        public List<V> compute(K key, BiFunction<? super K, ? super List<V>, ? extends List<V>> remappingFunction) {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
         public List<V> merge(K key, List<V> value, BiFunction<? super List<V>, ? super List<V>, ? extends List<V>> remappingFunction) {
             return map.merge(key, value, remappingFunction);
         }
@@ -171,11 +177,6 @@ public abstract class MoreCollections {
 
         @Override
         public void putAll(Map<? extends K, ? extends List<V>> m) {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
-        public void clear() {
             throw new UnsupportedOperationException();
         }
 

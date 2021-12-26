@@ -17,6 +17,8 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 public class MoreCollectionsTest {
     @Nested
     class UnmodifiableMultiValueMap {
+        // MultiValueMap
+
         @Test
         void init() {
             final MultiValueMap<String, Integer> m1 = new LinkedMultiValueMap<>();
@@ -134,6 +136,29 @@ public class MoreCollectionsTest {
 
             final MultiValueMap<String, Integer> m2 = MoreCollections.unmodifiableMultiValueMap(m1);
             assertEquals(m1.toSingleValueMap(), m2.toSingleValueMap());
+        }
+
+        // Map
+
+        @Test
+        void clear() {
+            final MultiValueMap<String, Integer> m1 = new LinkedMultiValueMap<>();
+            m1.put("foo", ImmutableList.of(1));
+            m1.put("bar", ImmutableList.of(2, 3));
+
+            final MultiValueMap<String, Integer> m2 = MoreCollections.unmodifiableMultiValueMap(m1);
+            assertThatThrownBy(m2::clear).isExactlyInstanceOf(UnsupportedOperationException.class);
+        }
+
+        @Test
+        void compute() {
+            final MultiValueMap<String, Integer> m1 = new LinkedMultiValueMap<>();
+            m1.put("foo", ImmutableList.of(1));
+            m1.put("bar", ImmutableList.of(2, 3));
+
+            final MultiValueMap<String, Integer> m2 = MoreCollections.unmodifiableMultiValueMap(m1);
+            assertThatThrownBy(() -> m2.compute("baz", (k, v) -> v))
+                    .isExactlyInstanceOf(UnsupportedOperationException.class);
         }
     }
 }
