@@ -1,10 +1,13 @@
 package moe.pine.spring.util;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -98,6 +101,39 @@ public class MoreCollectionsTest {
             assertEquals(m1.getFirst("foo"), m2.getFirst("foo"));
             assertEquals(m1.getFirst("bar"), m2.getFirst("bar"));
             assertEquals(m1.getFirst("baz"), m2.getFirst("baz"));
+        }
+
+        @Test
+        void set() {
+            final MultiValueMap<String, Integer> m1 = new LinkedMultiValueMap<>();
+            m1.put("foo", ImmutableList.of(1));
+            m1.put("bar", ImmutableList.of(2, 3));
+
+            final MultiValueMap<String, Integer> m2 = MoreCollections.unmodifiableMultiValueMap(m1);
+            assertThatThrownBy(() -> m2.set("baz", 4))
+                    .isExactlyInstanceOf(UnsupportedOperationException.class);
+        }
+
+        @Test
+        void setAll() {
+            final MultiValueMap<String, Integer> m1 = new LinkedMultiValueMap<>();
+            m1.put("foo", ImmutableList.of(1));
+            m1.put("bar", ImmutableList.of(2, 3));
+
+            final Map<String, Integer> m2 = ImmutableMap.of("baz", 4);
+            final MultiValueMap<String, Integer> m3 = MoreCollections.unmodifiableMultiValueMap(m1);
+            assertThatThrownBy(() -> m3.setAll(m2))
+                    .isExactlyInstanceOf(UnsupportedOperationException.class);
+        }
+
+        @Test
+        void toSingleValueMap() {
+            final MultiValueMap<String, Integer> m1 = new LinkedMultiValueMap<>();
+            m1.put("foo", ImmutableList.of(1));
+            m1.put("bar", ImmutableList.of(2, 3));
+
+            final MultiValueMap<String, Integer> m2 = MoreCollections.unmodifiableMultiValueMap(m1);
+            assertEquals(m1.toSingleValueMap(), m2.toSingleValueMap());
         }
     }
 }
