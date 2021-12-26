@@ -9,9 +9,10 @@ buildscript {
         inceptionYear = '2021'
 
         // Dependencies
+        assertjVersion = '3.21.0'
         junitVersion = '5.8.2'
-        springVersion = '5.3.0'
         mockitoVersion = '4.2.0'
+        springVersion = '5.3.14'
     }
     repositories {
         mavenCentral()
@@ -62,6 +63,12 @@ dependencies {
     compileOnly "org.springframework:spring-core:$springVersion"
     testImplementation "org.springframework:spring-core:$springVersion"
     compileOnly 'com.google.code.findbugs:jsr305:3.0.2'
+
+    // Guava
+    testImplementation 'com.google.guava:guava:31.0.1-jre'
+
+    // AssertJ
+    testImplementation "org.assertj:assertj-core:$assertjVersion"
 
     // Mockito
     testImplementation "org.mockito:mockito-core:$mockitoVersion"

@@ -1,5 +1,6 @@
 package moe.pine.spring.util;
 
+import org.springframework.lang.Nullable;
 import org.springframework.util.MultiValueMap;
 
 import java.io.Serializable;
@@ -13,8 +14,8 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public abstract class MoreCollections {
-    public <K, V> MultiValueMap<K, V> unmodifiableMultiValueMap(MultiValueMap<K, V> m) {
-        if (m.getClass() == UnmodifiableMultiValueMap.class) {
+    public static <K, V> MultiValueMap<K, V> unmodifiableMultiValueMap(MultiValueMap<K, V> m) {
+        if (m.getClass() == UnmodifiableMultiValueMap.class) { // implicit NPE
             return m;
         }
 
@@ -36,17 +37,7 @@ public abstract class MoreCollections {
         // MultiValueMap
 
         @Override
-        public void addIfAbsent(K key, V value) {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
-        public V getFirst(K key) {
-            return mvMap.getFirst(key);
-        }
-
-        @Override
-        public void add(K key, V value) {
+        public void add(K key, @Nullable V value) {
             throw new UnsupportedOperationException();
         }
 
@@ -61,7 +52,18 @@ public abstract class MoreCollections {
         }
 
         @Override
-        public void set(K key, V value) {
+        public void addIfAbsent(K key, @Nullable V value) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        @Nullable
+        public V getFirst(K key) {
+            return mvMap.getFirst(key);
+        }
+
+        @Override
+        public void set(K key, @Nullable V value) {
             throw new UnsupportedOperationException();
         }
 
