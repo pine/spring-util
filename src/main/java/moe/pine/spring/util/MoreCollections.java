@@ -125,8 +125,8 @@ public abstract class MoreCollections {
         }
 
         @Override
-        public int hashCode() {
-            return map.hashCode();
+        public List<V> get(Object key) {
+            return map.get(key);
         }
 
         @Override
@@ -135,38 +135,8 @@ public abstract class MoreCollections {
         }
 
         @Override
-        public void replaceAll(BiFunction<? super K, ? super List<V>, ? extends List<V>> function) {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
-        public List<V> putIfAbsent(K key, List<V> value) {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
-        public boolean remove(Object key, Object value) {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
-        public boolean replace(K key, List<V> oldValue, List<V> newValue) {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
-        public List<V> replace(K key, List<V> value) {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
-        public List<V> merge(K key, List<V> value, BiFunction<? super List<V>, ? super List<V>, ? extends List<V>> remappingFunction) {
-            return map.merge(key, value, remappingFunction);
-        }
-
-        @Override
-        public int size() {
-            return map.size();
+        public int hashCode() {
+            return map.hashCode();
         }
 
         @Override
@@ -174,19 +144,18 @@ public abstract class MoreCollections {
             return map.isEmpty();
         }
 
-
         @Override
-        public List<V> get(Object key) {
-            return map.get(key);
+        public Set<K> keySet() {
+            return map.keySet();
         }
 
         @Override
-        public List<V> put(K key, List<V> value) {
+        public List<V> merge(K key, List<V> value, BiFunction<? super List<V>, ? super List<V>, ? extends List<V>> remappingFunction) {
             throw new UnsupportedOperationException();
         }
 
         @Override
-        public List<V> remove(Object key) {
+        public List<V> put(K key, List<V> value) {
             throw new UnsupportedOperationException();
         }
 
@@ -196,8 +165,38 @@ public abstract class MoreCollections {
         }
 
         @Override
-        public Set<K> keySet() {
-            return map.keySet();
+        public List<V> putIfAbsent(K key, List<V> value) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public List<V> remove(Object key) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public boolean remove(Object key, Object value) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public List<V> replace(K key, List<V> value) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public boolean replace(K key, List<V> oldValue, List<V> newValue) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public void replaceAll(BiFunction<? super K, ? super List<V>, ? extends List<V>> function) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public int size() {
+            return map.size();
         }
 
         @Override
