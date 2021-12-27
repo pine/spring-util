@@ -11,6 +11,7 @@ import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 @SuppressWarnings("ConstantConditions")
@@ -159,6 +160,97 @@ public class MoreCollectionsTest {
             final MultiValueMap<String, Integer> m2 = MoreCollections.unmodifiableMultiValueMap(m1);
             assertThatThrownBy(() -> m2.compute("baz", (k, v) -> v))
                     .isExactlyInstanceOf(UnsupportedOperationException.class);
+        }
+
+        @Test
+        void computeIfAbsent() {
+            final MultiValueMap<String, Integer> m1 = new LinkedMultiValueMap<>();
+            m1.put("foo", ImmutableList.of(1));
+            m1.put("bar", ImmutableList.of(2, 3));
+
+            final MultiValueMap<String, Integer> m2 = MoreCollections.unmodifiableMultiValueMap(m1);
+            assertThatThrownBy(() -> m2.computeIfAbsent("baz", k -> ImmutableList.of(4)))
+                    .isExactlyInstanceOf(UnsupportedOperationException.class);
+        }
+
+        @Test
+        void computeIfPresent() {
+            final MultiValueMap<String, Integer> m1 = new LinkedMultiValueMap<>();
+            m1.put("foo", ImmutableList.of(1));
+            m1.put("bar", ImmutableList.of(2, 3));
+
+            final MultiValueMap<String, Integer> m2 = MoreCollections.unmodifiableMultiValueMap(m1);
+            assertThatThrownBy(() -> m2.computeIfPresent("foo", (k, v) -> ImmutableList.of(4)))
+                    .isExactlyInstanceOf(UnsupportedOperationException.class);
+        }
+
+        @Test
+        void containsKey() {
+            final MultiValueMap<String, Integer> m1 = new LinkedMultiValueMap<>();
+            m1.put("foo", ImmutableList.of(1));
+            m1.put("bar", ImmutableList.of(2, 3));
+
+            final MultiValueMap<String, Integer> m2 = MoreCollections.unmodifiableMultiValueMap(m1);
+            assertEquals(m1.containsKey("foo"), m2.containsKey("foo"));
+            assertEquals(m1.containsKey("baz"), m2.containsKey("baz"));
+        }
+
+        @Test
+        void containsValue() {
+            final MultiValueMap<String, Integer> m1 = new LinkedMultiValueMap<>();
+            m1.put("foo", ImmutableList.of(1));
+            m1.put("bar", ImmutableList.of(2, 3));
+
+            final MultiValueMap<String, Integer> m2 = MoreCollections.unmodifiableMultiValueMap(m1);
+            assertEquals(m1.containsValue(ImmutableList.of(1)), m2.containsValue(ImmutableList.of(1)));
+            assertEquals(m1.containsValue(ImmutableList.of(2, 3)), m2.containsValue(ImmutableList.of(2, 3)));
+            assertEquals(m1.containsValue(ImmutableList.of(4)), m2.containsValue(ImmutableList.of(4)));
+        }
+
+        @Test
+        void entrySet() {
+            final MultiValueMap<String, Integer> m1 = new LinkedMultiValueMap<>();
+            m1.put("foo", ImmutableList.of(1));
+            m1.put("bar", ImmutableList.of(2, 3));
+
+            final MultiValueMap<String, Integer> m2 = MoreCollections.unmodifiableMultiValueMap(m1);
+            assertEquals(m1.entrySet(), m2.entrySet());
+        }
+
+        @Test
+        void equals() {
+            final MultiValueMap<String, Integer> m1 = new LinkedMultiValueMap<>();
+            m1.put("foo", ImmutableList.of(1));
+            m1.put("bar", ImmutableList.of(2, 3));
+
+            final MultiValueMap<String, Integer> m2 = new LinkedMultiValueMap<>();
+            m2.put("foo", ImmutableList.of(1));
+            m2.put("bar", ImmutableList.of(2, 3));
+
+            final MultiValueMap<String, Integer> m3 = MoreCollections.unmodifiableMultiValueMap(m1);
+            final MultiValueMap<String, Integer> m4 = MoreCollections.unmodifiableMultiValueMap(m2);
+            assertEquals(m1, m3);
+            assertEquals(m1, m4);
+            assertEquals(m3, m3);
+            assertEquals(m3, m4);
+        }
+
+        @Test
+        void equals_notEquals() {
+            final MultiValueMap<String, Integer> m1 = new LinkedMultiValueMap<>();
+            m1.put("foo", ImmutableList.of(1));
+            m1.put("bar", ImmutableList.of(2, 3));
+
+            final MultiValueMap<String, Integer> m2 = new LinkedMultiValueMap<>();
+            m1.put("foo", ImmutableList.of(1));
+            m1.put("bar", ImmutableList.of(2, 3));
+            m1.put("baz", ImmutableList.of(4));
+
+            final MultiValueMap<String, Integer> m3 = MoreCollections.unmodifiableMultiValueMap(m1);
+            final MultiValueMap<String, Integer> m4 = MoreCollections.unmodifiableMultiValueMap(m2);
+            assertNotEquals(m1, m4);
+            assertNotEquals(m2, m3);
+            assertNotEquals(m3, m4);
         }
     }
 }
