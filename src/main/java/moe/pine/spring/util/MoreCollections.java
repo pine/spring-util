@@ -13,7 +13,28 @@ import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
-public abstract class MoreCollections {
+/**
+ * Utility class for collections provided by Spring Framework.
+ *
+ * @author Pine Mizune
+ * @see Collections
+ * @since 0.1.0
+ */
+public final class MoreCollections {
+    private MoreCollections() {
+    }
+
+    /**
+     * Returns an unmodifiable view of the specified multi value map.
+     *
+     * @param <K> the key type
+     * @param <V> the value element type
+     * @param m   the map for which an unmodifiable view is to be returned.
+     * @return an unmodifiable view of the specified map.
+     * @throws NullPointerException if the specified map is null
+     * @see Collections#unmodifiableMap(Map)
+     * @since 0.1.0
+     */
     public static <K, V> MultiValueMap<K, V> unmodifiableMultiValueMap(MultiValueMap<K, V> m) {
         if (m.getClass() == UnmodifiableMultiValueMap.class) { // implicit NPE
             return m;
