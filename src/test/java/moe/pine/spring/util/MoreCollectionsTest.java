@@ -16,6 +16,7 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -24,7 +25,15 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SuppressWarnings("ConstantConditions")
-public class MoreCollectionsTest {
+class MoreCollectionsTest {
+    static class MoreCollectionsImpl extends MoreCollections {
+    }
+
+    @Test
+    void constructor() {
+        assertThatNoException().isThrownBy(MoreCollectionsImpl::new);
+    }
+
     @Nested
     class UnmodifiableMultiValueMap {
         // MultiValueMap
@@ -267,7 +276,7 @@ public class MoreCollectionsTest {
             final MultiValueMap<String, Integer> m1 = new LinkedMultiValueMap<>();
             m1.put("foo", ImmutableList.of(1));
             m1.put("bar", ImmutableList.of(2, 3));
-            
+
             final Set<Map.Entry<String, List<Integer>>> expectedEntries =
                     ImmutableSet.of(
                             Maps.immutableEntry("foo", ImmutableList.of(1)),
