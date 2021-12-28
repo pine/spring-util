@@ -2,6 +2,7 @@
 
 [![Build Status](https://app.travis-ci.com/pine/spring-util.svg?branch=main)](https://app.travis-ci.com/pine/spring-util)
 [![codecov](https://codecov.io/gh/pine/spring-util/branch/main/graph/badge.svg?token=lDSh4VoVqE)](https://codecov.io/gh/pine/spring-util)
+[![Maven Central](https://img.shields.io/maven-central/v/moe.pine/spring-util)](https://search.maven.org/artifact/moe.pine/spring-util)
 
 :herb: Micro utilities for Spring Framework
 
