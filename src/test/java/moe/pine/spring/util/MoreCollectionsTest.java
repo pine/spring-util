@@ -267,16 +267,17 @@ public class MoreCollectionsTest {
             final MultiValueMap<String, Integer> m1 = new LinkedMultiValueMap<>();
             m1.put("foo", ImmutableList.of(1));
             m1.put("bar", ImmutableList.of(2, 3));
-
+            
             final Set<Map.Entry<String, List<Integer>>> expectedEntries =
                     ImmutableSet.of(
                             Maps.immutableEntry("foo", ImmutableList.of(1)),
                             Maps.immutableEntry("bar", ImmutableList.of(2, 3))
                     );
-
             final Set<Map.Entry<String, List<Integer>>> actualEntries = new HashSet<>();
             final AtomicInteger count = new AtomicInteger();
-            m1.forEach((k, v) -> {
+
+            final MultiValueMap<String, Integer> m2 = MoreCollections.unmodifiableMultiValueMap(m1);
+            m2.forEach((k, v) -> {
                 count.incrementAndGet();
                 actualEntries.add(Maps.immutableEntry(k, v));
             });
