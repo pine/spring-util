@@ -126,6 +126,24 @@ spotbugsTest {
 }
 
 
+// ----- PMD ----------------------------------------------
+
+apply plugin: 'pmd'
+
+pmd {
+    toolVersion = '6.41.0'
+    consoleOutput = true
+    ruleSetFiles = rootProject.files("config/pmd-ruleset.xml")
+    ruleSets = []
+}
+pmdMain {
+    enabled = true
+}
+pmdTest {
+    enabled = false
+}
+
+
 // ----- Build Time Tracker -------------------------------
 
 apply plugin: 'build-time-tracker'
