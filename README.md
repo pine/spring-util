@@ -1,6 +1,6 @@
 # spring-util
 
-[![Build Status](https://app.travis-ci.com/pine/spring-util.svg?branch=main)](https://app.travis-ci.com/pine/spring-util)
+[![build](https://github.com/pine/spring-util/actions/workflows/build.yml/badge.svg)](https://github.com/pine/spring-util/actions/workflows/build.yml)
 [![codecov](https://codecov.io/gh/pine/spring-util/branch/main/graph/badge.svg?token=lDSh4VoVqE)](https://codecov.io/gh/pine/spring-util)
 [![Maven Central](https://img.shields.io/maven-central/v/moe.pine/spring-util)](https://search.maven.org/artifact/moe.pine/spring-util)
 [![javadoc](https://javadoc.io/badge2/moe.pine/spring-util/javadoc.svg)](https://javadoc.io/doc/moe.pine/spring-util)
