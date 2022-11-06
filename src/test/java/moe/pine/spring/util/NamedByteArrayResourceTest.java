@@ -36,6 +36,16 @@ class NamedByteArrayResourceTest {
         }
 
         @Test
+        void differentType() {
+            final byte[] bytes = {0x01, 0x02, 0x03};
+            final String filename = "abc.txt";
+            final ByteArrayResource resource1 = new NamedByteArrayResource(bytes, filename);
+            final ByteArrayResource resource2 = new ByteArrayResource(bytes);
+
+            assertNotEquals(resource1, resource2);
+        }
+
+        @Test
         void differentByteArray() {
             final byte[] bytes1 = {0x01, 0x02, 0x03};
             final byte[] bytes2 = {0x01, 0x02, 0x04};
@@ -45,6 +55,7 @@ class NamedByteArrayResourceTest {
 
             assertNotEquals(resource1, resource2);
         }
+
         @Test
         void differentFilename() {
             final byte[] bytes = {0x01, 0x02, 0x03};
