@@ -2,7 +2,7 @@ buildscript {
     ext {
         // Maven
         group = 'moe.pine'
-        version = '0.1.0'
+        version = '0.1.1'
         description = 'Utilities for SpringFramework'
         websiteUrl = 'https://github.com/pine/spring-util'
         gitUrl = 'https://github.com/pine/spring-util.git'
