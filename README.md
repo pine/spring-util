@@ -15,14 +15,9 @@
 
 ## Requirements
 
-- Java 8 or later
-- Spring Framework
-
-### Supported Spring Framework versions
-
-|Spring Framework versions|Spring Boot versions|This library version|
-|-------------------------|--------------------|--------------------|
-|5.3                      |2.4, 2.5, 2.6, 2.7  |0.1.1               |
+|Java versions|Spring Framework versions|Spring Boot versions|This library version|
+|-------------|-------------------------|--------------------|--------------------|
+|8 or later   |5.3                      |2.4, 2.5, 2.6, 2.7  |0.1.1               |
 
 ## Getting started
 The library is published to Maven Central.
