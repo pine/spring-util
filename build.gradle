@@ -12,7 +12,7 @@ buildscript {
         assertjVersion = '3.21.0'
         junitVersion = '5.8.2'
         mockitoVersion = '4.2.0'
-        springVersion = '5.3.14'
+        springVersion = '6.0.0'
     }
     repositories {
         mavenCentral()
@@ -35,8 +35,8 @@ group rootProject.ext.group
 version rootProject.ext.version
 description rootProject.ext.description
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
 
 java {
     withJavadocJar()
