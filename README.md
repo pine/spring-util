@@ -18,7 +18,7 @@
 | Java versions | Spring Framework versions | Spring Boot versions | This library version |
 |---------------|---------------------------|----------------------|----------------------|
 | 8 or later    | 5.3                       | 2.4, 2.5, 2.6, 2.7   | 0.1.1                |
-| 17 or later   | 6.0                       | 2.4, 2.5, 2.6, 2.7   | 0.1.1                |
+| 17 or later   | 6.0                       | 3.0                  | 0.2.0                |
 
 
 ## Getting started
