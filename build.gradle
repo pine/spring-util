@@ -52,8 +52,6 @@ javadoc {
 compileJava {
     options.encoding = 'UTF-8'
     options.compilerArgs << '-Xlint'
-    options.compilerArgs << '-Xlint:-requires-automatic'
-    options.compilerArgs << '-Xlint:-requires-transitive-automatic'
 }
 
 repositories {
