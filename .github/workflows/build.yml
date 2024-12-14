@@ -21,4 +21,4 @@ jobs:
           java-version: ${{ matrix.java-version }}
           cache: gradle
       - run: ./gradlew check jacocoTestReport
-      - uses: codecov/codecov-action@v3
+      - uses: codecov/codecov-action@v5
