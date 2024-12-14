@@ -19,10 +19,13 @@ buildscript {
         maven { url 'https://plugins.gradle.org/m2/' }
     }
     dependencies {
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
-        classpath 'com.github.spotbugs.snom:spotbugs-gradle-plugin:5.0.3'
+        // classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
         classpath 'net.rdrei.android.buildtimetracker:gradle-plugin:0.11.0'
     }
+}
+
+plugins {
+  id 'com.github.spotbugs' version '6.0.26'
 }
 
 
@@ -103,10 +106,8 @@ jacocoTestReport {
 
 // ----- SpotBugs -----------------------------------------
 
-apply plugin: 'com.github.spotbugs'
-
 spotbugs {
-    toolVersion = '4.5.2'
+    toolVersion = '4.8.6'
     excludeFilter = file("${project.rootDir}/config/findbugs-exclude.xml")
 }
 
