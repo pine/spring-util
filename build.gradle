@@ -143,8 +143,6 @@ pmdTest {
 
 // ----- Build Time Tracker -------------------------------
 
-apply plugin: 'build-time-tracker'
-
 buildtimetracker {
     reporters {
         summary {
